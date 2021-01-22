@@ -1,3 +1,4 @@
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 <div class="py-5">
   <%= form_for @company do |f| %>
 
@@ -53,7 +54,8 @@
       </div>
       <div class="col-lg offset-lg-1">
         <div class="form-group">
-          <%= f.text_field :email, class: "form-control", placeholder: "hello@company.com"%>
+          <%= f.text_field :email, class: "form-control", placeholder: "hello@getmainstreet.com"%>
+          <span id="email-error" class="text-danger"></span>
         </div>
       </div>
     </div>
@@ -70,11 +72,36 @@
     </div>
 
     <div class="row my-lg-3">
+      <div class="col-lg-3">
+        <label><strong>Brand Color</strong><br><small class="text-muted">Background color shown in company page</small></label>
+      </div>
+      <div class="col-lg offset-lg-1">
+          <div class="form-group">
+            <%= f.color_field :color, value: @company.color, class: "color-input"%>
+          </div>
+      </div>
+    </div>
+
+    <div class="row my-lg-3">
       <div class="col">
         <div class="form-group">
-          <%= f.submit class: "btn btn-success"%>
+          <%= f.submit class: "btn btn-success", id: 'form-submit',data: { target: "company-form.submitButton" } %>
         </div>
       </div>
     </div>
   <% end %>
 </div>
+
+<script type="text/javascript" >
+  $('#form-submit').on('click', function(e){
+    e.preventDefault();
+    var companyEmail = $("#company_email").val()
+    if(companyEmail.length > 0){
+      if (!/@getmainstreet.com\s*$/.test(companyEmail)) {
+        $("#email-error").text('Email should end with domain @getmainstreet.com')
+        return false;
+      }
+    }
+    $('form').submit()
+  })
+</script> 

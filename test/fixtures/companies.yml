@@ -39,3 +39,10 @@ brown_painting:
   zip_code:
   phone: "555-808-8888"
   services: "{Interior Painting}"   
+
+new_painting:
+  name: "New Painting"
+  email: 
+  zip_code:
+  phone: "555-808-8888"
+  services: "{Interior Painting}" 
